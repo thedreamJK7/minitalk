@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_hexa_low.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: javokhir <javokhir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/29 17:52:39 by javokhir          #+#    #+#             */
-/*   Updated: 2025/07/30 15:37:35 by javokhir         ###   ########.fr       */
+/*   Created: 2025/06/05 16:03:07 by jkubaev           #+#    #+#             */
+/*   Updated: 2025/06/05 21:46:56 by javokhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "../ft_printf.h"
 
-int	main(int argc, char **argv){
-	if (argc == 3)
+int ft_hexa_low(unsigned int n)
+{
+	int	count;
+	char *base;
+
+	base = "0123456789abcdef";
+	count = 0;
+	if (n >= 16)
 	{
-		int	pid = ft_atoi(argv[1]);
-		while (*argv[2])
-		{
-			int i = 8;
-			while (i--)
-			{
-				if ((*argv[2] >> i) & 1)
-					kill(pid, SIGUSR1);
-				else
-					kill(pid, SIGUSR2);
-			}
-			if (!*argv[2])
-				kill(pid, SIGQUIT);
-			argv[2]++;
-		}
+		count++;
+		ft_hexa_low(n / 16);
 	}
-	else
-	{
-		ft_printf("Error: More or not enough arguments");
-		exit(EXIT_FAILURE);
-	}
+	ft_putchar(base[n % 16]);
+	count++;
+	return (count);
 }
-

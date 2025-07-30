@@ -1,40 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: javokhir <javokhir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/29 17:52:39 by javokhir          #+#    #+#             */
-/*   Updated: 2025/07/30 15:37:35 by javokhir         ###   ########.fr       */
+/*   Created: 2025/06/04 20:10:21 by jkubaev           #+#    #+#             */
+/*   Updated: 2025/07/30 15:54:18 by javokhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-int	main(int argc, char **argv){
-	if (argc == 3)
-	{
-		int	pid = ft_atoi(argv[1]);
-		while (*argv[2])
-		{
-			int i = 8;
-			while (i--)
-			{
-				if ((*argv[2] >> i) & 1)
-					kill(pid, SIGUSR1);
-				else
-					kill(pid, SIGUSR2);
-			}
-			if (!*argv[2])
-				kill(pid, SIGQUIT);
-			argv[2]++;
-		}
-	}
-	else
-	{
-		ft_printf("Error: More or not enough arguments");
-		exit(EXIT_FAILURE);
-	}
-}
+# include <stdarg.h>
+# include <unistd.h>
 
+int	ft_printf(const char *format, ...);
+int	ft_putnbr(int n);
+int	ft_putchar(char c);
+int	ft_putstr(char *s);
+int	ft_put_unsigned(unsigned int n);
+int	ft_hexa_low(unsigned int n);
+int	ft_hexa_upp(unsigned int n);
+int	ft_atoi(const char *nptr);
+
+#endif

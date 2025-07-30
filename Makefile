@@ -14,15 +14,23 @@ OBJSSV = $(SRCSSV:.c=.o)
 SERVER = server
 CLIENT = client
 
+# printf
+PRINTF_DIR = ./ft_printf
+PRINTF_LIB = $(PRINTF_DIR)/libftprintf.a
+MAKE = make
+
 # Main rule
 all: $(SERVER) $(CLIENT)
 
 # Linking rule
-$(SERVER): $(OBJSSV) 
-	$(CC) $(CFLAGS) $(OBJSSV) -o $(SERVER)
+$(SERVER): $(OBJSSV) $(PRINTF_LIB)
+	$(CC) $(CFLAGS) $(OBJSSV) $(PRINTF_LIB) -o $(SERVER)
 
-$(CLIENT): $(OBJSCL) 
-	$(CC) $(CFLAGS) $(OBJSCL) -o $(CLIENT)
+$(CLIENT): $(OBJSCL) $(PRINTF_LIB)
+	$(CC) $(CFLAGS) $(OBJSCL) $(PRINTF_LIB) -o $(CLIENT)
+
+$(PRINTF_LIB):
+	$(MAKE) -C $(PRINTF_DIR)
 
 # Rule to compile .c files to .o
 %.o: %.c
@@ -31,9 +39,11 @@ $(CLIENT): $(OBJSCL)
 # Cleaning rules
 clean:
 	rm -f $(OBJSSV) $(OBJSCL)
+	$(MAKE) -C $(PRINTF_DIR) clean
 
 fclean: clean
 	rm -f $(SERVER) $(CLIENT)
+	$(MAKE) -C $(PRINTF_DIR) fclean
 
 re: fclean all
 

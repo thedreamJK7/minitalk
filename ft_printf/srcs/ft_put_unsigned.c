@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_put_unsigned.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: javokhir <javokhir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/29 18:00:51 by javokhir          #+#    #+#             */
-/*   Updated: 2025/07/30 15:55:04 by javokhir         ###   ########.fr       */
+/*   Created: 2025/06/05 15:33:23 by jkubaev           #+#    #+#             */
+/*   Updated: 2025/06/05 15:43:02 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "../ft_printf.h"
 
-//  Libraries
+int	ft_put_unsigned(unsigned int n)
+{
+	int	count;
 
-# include <signal.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <string.h>
-
-//  Headers
-
-# include "./ft_printf/ft_printf.h"
-
-//  Functions
-
-#endif
+	count = 0;
+	if (n >= 10)
+		count += ft_put_unsigned(n / 10);
+	ft_putchar((n % 10) + 48);
+	count++;
+	return (count);
+}

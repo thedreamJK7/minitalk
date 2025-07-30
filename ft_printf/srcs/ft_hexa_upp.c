@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_hexa_upp.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: javokhir <javokhir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/29 18:00:51 by javokhir          #+#    #+#             */
-/*   Updated: 2025/07/30 15:55:04 by javokhir         ###   ########.fr       */
+/*   Created: 2025/06/05 16:59:36 by jkubaev           #+#    #+#             */
+/*   Updated: 2025/06/05 17:00:19 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "../ft_printf.h"
 
-//  Libraries
+int ft_hexa_upp(unsigned int n)
+{
+	int	count;
+	char *base;
 
-# include <signal.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <string.h>
-
-//  Headers
-
-# include "./ft_printf/ft_printf.h"
-
-//  Functions
-
-#endif
+	base = "0123456789ABCDEF";
+	count = 0;
+	if (n >= 16)
+	{
+		count++;
+		ft_hexa_upp(n / 16);
+	}
+	ft_putchar(base[n % 16]);
+	count++;
+	return (count);
+}
