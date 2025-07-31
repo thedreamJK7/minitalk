@@ -6,29 +6,40 @@
 /*   By: javokhir <javokhir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 17:52:39 by javokhir          #+#    #+#             */
-/*   Updated: 2025/07/30 15:37:35 by javokhir         ###   ########.fr       */
+/*   Updated: 2025/07/31 14:18:56 by javokhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-int	main(int argc, char **argv){
+
+
+int	main(int argc, char **argv)
+{
+	int	i;
+	int	pid;
+
 	if (argc == 3)
 	{
-		int	pid = ft_atoi(argv[1]);
+		pid = ft_atoi(argv[1]);
 		while (*argv[2])
 		{
-			int i = 8;
+			i = 8;
 			while (i--)
 			{
 				if ((*argv[2] >> i) & 1)
 					kill(pid, SIGUSR1);
 				else
 					kill(pid, SIGUSR2);
+				usleep(500);
 			}
-			if (!*argv[2])
-				kill(pid, SIGQUIT);
 			argv[2]++;
+		}
+		i = 8;
+		while (i--)
+		{
+			kill(pid, SIGUSR2);
+			usleep(500);
 		}
 	}
 	else
