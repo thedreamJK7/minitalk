@@ -6,7 +6,8 @@ SRCS = ./srcs/ft_hexa_low.c \
 	./srcs/ft_hexa_upp.c ./srcs/ft_printf.c  \
 	./srcs/ft_put_unsigned.c ./srcs/ft_putchar.c \
 	./srcs/ft_putnbr.c ./srcs/ft_putstr.c \
-	./srcs/ft_atoi.c
+	./srcs/ft_atoi.c ./srcs/ft_putptr.c \
+	./srcs/ft_hexa_low_ptr.c
 
 OBJS = $(SRCS:.c=.o)
 

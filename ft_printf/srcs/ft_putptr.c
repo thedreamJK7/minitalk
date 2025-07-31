@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_hexa_upp.c                                      :+:      :+:    :+:   */
+/*   ft_putptr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 16:59:36 by jkubaev           #+#    #+#             */
-/*   Updated: 2025/06/06 17:15:03 by jkubaev          ###   ########.fr       */
+/*   Created: 2025/06/06 15:21:48 by jkubaev           #+#    #+#             */
+/*   Updated: 2025/06/06 17:15:21 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int	ft_hexa_upp(unsigned int n)
+int	ft_putptr(void *ptr)
 {
-	int		count;
-	char	*base;
+	int					count;
+	unsigned long long	addr;
 
-	base = "0123456789ABCDEF";
+	addr = (unsigned long long)ptr;
+	if (!addr)
+		return (write(1, "(nil)", 5));
 	count = 0;
-	if (n >= 16)
-	{
-		count += ft_hexa_upp(n / 16);
-	}
-	ft_putchar(base[n % 16]);
-	count++;
+	count += ft_putstr("0x");
+	count += ft_hexa_low_ptr(addr);
 	return (count);
 }

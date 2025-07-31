@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: javokhir <javokhir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 17:52:39 by javokhir          #+#    #+#             */
-/*   Updated: 2025/07/31 19:49:31 by javokhir         ###   ########.fr       */
+/*   Updated: 2025/07/31 20:20:29 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static void	send_bit(unsigned char bits, int pid)
 	i = 7;
 	while (i >= 0)
 	{
-		ft_printf("%d", (bits >> i) & 1);
 		if ((bits >> i) & 1)
 		{
 			if (kill(pid, SIGUSR1) == -1)
