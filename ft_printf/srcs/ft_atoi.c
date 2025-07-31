@@ -6,7 +6,7 @@
 /*   By: javokhir <javokhir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 12:40:58 by javokhir          #+#    #+#             */
-/*   Updated: 2025/07/30 15:58:55 by javokhir         ###   ########.fr       */
+/*   Updated: 2025/07/31 16:34:32 by javokhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_atoi(const char *nptr)
 {
-	size_t	i;
+	int		i;
 	int		k;
 	int		sum;
 

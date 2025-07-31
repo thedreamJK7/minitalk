@@ -6,7 +6,7 @@
 /*   By: javokhir <javokhir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 18:00:51 by javokhir          #+#    #+#             */
-/*   Updated: 2025/07/30 15:55:04 by javokhir         ###   ########.fr       */
+/*   Updated: 2025/07/31 19:21:28 by javokhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@
 //  Headers
 
 # include "./ft_printf/ft_printf.h"
+
+//  structs
+
+typedef struct s_minitalk
+{
+	char	c_char;
+	int		bits;
+}				t_minitalk;
 
 //  Functions
 

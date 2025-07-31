@@ -6,46 +6,57 @@
 /*   By: javokhir <javokhir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 17:52:39 by javokhir          #+#    #+#             */
-/*   Updated: 2025/07/31 14:18:56 by javokhir         ###   ########.fr       */
+/*   Updated: 2025/07/31 19:49:31 by javokhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-
-
-int	main(int argc, char **argv)
+static void	send_bit(unsigned char bits, int pid)
 {
 	int	i;
-	int	pid;
 
-	if (argc == 3)
+	i = 7;
+	while (i >= 0)
 	{
-		pid = ft_atoi(argv[1]);
-		while (*argv[2])
+		ft_printf("%d", (bits >> i) & 1);
+		if ((bits >> i) & 1)
 		{
-			i = 8;
-			while (i--)
+			if (kill(pid, SIGUSR1) == -1)
 			{
-				if ((*argv[2] >> i) & 1)
-					kill(pid, SIGUSR1);
-				else
-					kill(pid, SIGUSR2);
-				usleep(500);
+				ft_printf("Wrong PID");
+				exit(1);
 			}
-			argv[2]++;
 		}
-		i = 8;
-		while (i--)
+		else
 		{
-			kill(pid, SIGUSR2);
-			usleep(500);
+			if (kill(pid, SIGUSR2) == -1)
+			{
+				ft_printf("Wrong PID");
+				exit(1);
+			}
 		}
-	}
-	else
-	{
-		ft_printf("Error: More or not enough arguments");
-		exit(EXIT_FAILURE);
+		usleep(500);
+		i--;
 	}
 }
 
+int	main(int argc, char **argv)
+{
+	unsigned char	*msg;
+	int				pid;
+
+	if (argc != 3)
+		ft_printf("I need a correct info");
+	pid = ft_atoi(argv[1]);
+	if (pid < 0)
+		ft_printf("PID must be positive");
+	msg = (unsigned char *)argv[2];
+	while (*msg)
+	{
+		send_bit(*msg, pid);
+		msg++;
+	}
+	send_bit('\0', pid);
+	return (0);
+}
