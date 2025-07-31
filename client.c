@@ -6,7 +6,7 @@
 /*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 17:52:39 by javokhir          #+#    #+#             */
-/*   Updated: 2025/07/31 20:20:29 by jkubaev          ###   ########.fr       */
+/*   Updated: 2025/07/31 20:46:21 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,16 @@ int	main(int argc, char **argv)
 	int				pid;
 
 	if (argc != 3)
+	{
 		ft_printf("I need a correct info");
+		exit(1);
+	}
 	pid = ft_atoi(argv[1]);
 	if (pid < 0)
+	{
 		ft_printf("PID must be positive");
+		exit(1);
+	}
 	msg = (unsigned char *)argv[2];
 	while (*msg)
 	{
